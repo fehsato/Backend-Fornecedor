@@ -1,10 +1,10 @@
-package com.fatec.client;
+package com.fatec.fornecedor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ClientApplicationTests {
+class FornecedorApplicationTests {
 
 	@Test
 	void contextLoads() {
