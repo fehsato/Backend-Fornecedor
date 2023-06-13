@@ -1,4 +1,4 @@
-package com.fatec.client.resources;
+package com.fatec.fornecedor.resources;
 
 
 import java.net.URI;
@@ -15,58 +15,57 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import com.fatec.client.entities.Client;
-import com.fatec.client.services.ClientService;
+import com.fatec.fornecedor.entities.Fornecedor;
+import com.fatec.fornecedor.services.FornecedorService;
 
 @RestController
-@RequestMapping("clients")
+@RequestMapping("fornecedores")
 @CrossOrigin
-public class ClientController {
+public class FornecedorController {
     
     @Autowired
-    private ClientService clientService;
+    private FornecedorService fornecedorService;
 
     
     
     @GetMapping("{id}")
-    public ResponseEntity<Client> getClient(@PathVariable int id){
-        Client client = clientService.getClientById(id);
-        return ResponseEntity.ok().body(client);
+    public ResponseEntity<Fornecedor> getFornecedor(@PathVariable int id){
+        Fornecedor fornecedor = fornecedorService.getFornecedorById(id);
+        return ResponseEntity.ok().body(fornecedor);
     }
 
     @GetMapping
-    public ResponseEntity<List<Client>> getClients(){
-        List<Client> client = clientService.getClients();
-        return ResponseEntity.ok().body(client);
+    public ResponseEntity<List<Fornecedor>> getFornecedores(){
+        List<Fornecedor> fornecedor = fornecedorService.getFornecedores();
+        return ResponseEntity.ok().body(fornecedor);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteClient(@PathVariable int id){
-        clientService.delete(id);
+    public ResponseEntity<Void> deleteFornecedor(@PathVariable int id){
+        fornecedorService.delete(id);
         return ResponseEntity.noContent().build();
 
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Void> editClient(@PathVariable int id, @RequestBody Client client ){
-        clientService.update(id, client);
+    public ResponseEntity<Void> editFornecedor(@PathVariable int id, @RequestBody Fornecedor fornecedor ){
+        fornecedorService.update(id, fornecedor);
         return ResponseEntity.ok().build();
     }
      
     
     
     @PostMapping
-    public ResponseEntity<Client> saveClient(@RequestBody Client client ){
-        Client newClient = clientService.save(client);
+    public ResponseEntity<Fornecedor> saveFornecedor(@RequestBody Fornecedor fornecedor ){
+        Fornecedor newFornecedor = fornecedorService.save(fornecedor);
 
         URI location = ServletUriComponentsBuilder
             .fromCurrentRequest()
             .path("/{id}")
-            .buildAndExpand(client.getId())
+            .buildAndExpand(fornecedor.getId())
 
         .toUri();
-        return ResponseEntity.created(location).body(newClient);
+        return ResponseEntity.created(location).body(newFornecedor);
     }
 
 

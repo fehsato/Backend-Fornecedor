@@ -1,8 +1,6 @@
-package com.fatec.client.entities;
+package com.fatec.fornecedor.entities;
 
 import java.io.Serializable;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,26 +8,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "TBL_CLIENT")
-public class Client implements Serializable {
+@Table(name = "TBL_FORNECEDOR")
+public class Fornecedor implements Serializable {
         
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
-
-    @Column(unique = true)
-    private String email;
-
+    
     /* É obrigatório ter o contrutor vazio */ 
-    public Client() {
+    public Fornecedor() {
     }
 
 
-    public Client(Integer id, String email, String name) {
-        this.id = id;
-        this.email = email;
+    public Fornecedor(Integer id, String email, String name) {
+        this.id = id;        
         this.name = name;
     
     
@@ -46,13 +40,7 @@ public class Client implements Serializable {
     }
     public void setName(String name) {
         this.name = name;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    } 
 
     /* Gerar hashcode e equals
      * Hashcode organiza e o equals determina que se o Id for igual é o mesmo objeto
@@ -72,7 +60,7 @@ public class Client implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Client other = (Client) obj;
+        Fornecedor other = (Fornecedor) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
